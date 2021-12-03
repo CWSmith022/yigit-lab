@@ -1,6 +1,6 @@
 # AGONS
 # %%
-"""Class for AGONS."""
+"""Class for AGONS"""
 
 #Author: Christopher W. Smith
 #Date: 10/10/21
