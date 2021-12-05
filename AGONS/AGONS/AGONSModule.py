@@ -19,7 +19,7 @@ import seaborn as sns
 sns.set_style('ticks')
 #Modeling and Scoring
 from sklearn.pipeline import Pipeline
-from sklearn.base import BaseEstimator, TransformerMixin
+from sklearn.preprocessing import FunctionTransformer
 from sklearn.preprocessing import MinMaxScaler, Normalizer, StandardScaler
 from sklearn.svm import SVC
 from sklearn.metrics import accuracy_score
@@ -27,7 +27,6 @@ from sklearn.model_selection import StratifiedKFold, LeaveOneOut, RepeatedStrati
 from sklearn.feature_selection import SelectKBest, f_classif
 from sklearn.decomposition import PCA 
 from sklearn.model_selection import RandomizedSearchCV as rscv
-from AGONS.IndTransformerModule import IndTransformer
 import time
 from sklearn.model_selection import cross_val_score
 class AGONS:
@@ -82,10 +81,15 @@ class AGONS:
                 ('pca', PCA()), 
                 ('svm', SVC(probability=True))
                 ])
-
+        ##Row-Wise Standard Scaler Function for Function Transformer
+        def SSRow(X):
+            X_ = X.copy()
+            X_t = StandardScaler().fit_transform(X_.T).T 
+            return X_t
+        
         #Setting Randomized Search parameters for pipe.
         ran_pam= {  
-            'scaler': [MinMaxScaler(), Normalizer(), StandardScaler(),IndTransformer()],
+            'scaler': [MinMaxScaler(), Normalizer(), StandardScaler(),FunctionTransformer(SSRow)],
             'anova__k': list(np.arange(3, self.k_max)), 
             'pca__n_components': list(np.arange(2, 10,1)),
             'pca__svd_solver': ['full'],
