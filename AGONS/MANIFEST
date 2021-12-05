@@ -2,4 +2,5 @@
 setup.cfg
 setup.py
 AGONS\AGONSModule.py
+AGONS\IndTransformerModule.py
 AGONS\__init__.py

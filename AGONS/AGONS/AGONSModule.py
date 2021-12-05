@@ -19,6 +19,7 @@ import seaborn as sns
 sns.set_style('ticks')
 #Modeling and Scoring
 from sklearn.pipeline import Pipeline
+from sklearn.base import BaseEstimator, TransformerMixin
 from sklearn.preprocessing import MinMaxScaler, Normalizer, StandardScaler
 from sklearn.svm import SVC
 from sklearn.metrics import accuracy_score
@@ -26,10 +27,9 @@ from sklearn.model_selection import StratifiedKFold, LeaveOneOut, RepeatedStrati
 from sklearn.feature_selection import SelectKBest, f_classif
 from sklearn.decomposition import PCA 
 from sklearn.model_selection import RandomizedSearchCV as rscv
+from AGONS.IndTransformerModule import IndTransformer
 import time
 from sklearn.model_selection import cross_val_score
-
-
 class AGONS:
     """Class for AGONS modeling nanosensor array data"""
     def __init__(self, k_max = 10, cv_method = 'Stratified K Fold' , 
@@ -85,7 +85,7 @@ class AGONS:
 
         #Setting Randomized Search parameters for pipe.
         ran_pam= {  
-            'scaler': [MinMaxScaler(), Normalizer(), StandardScaler()],
+            'scaler': [MinMaxScaler(), Normalizer(), StandardScaler(),IndTransformer()],
             'anova__k': list(np.arange(3, self.k_max)), 
             'pca__n_components': list(np.arange(2, 10,1)),
             'pca__svd_solver': ['full'],
@@ -624,6 +624,3 @@ class AGONS:
         self.ypred_prob = self.final_model.predict_proba(xtest)
 
         return self.ypred_prob
-
-
-# %%
