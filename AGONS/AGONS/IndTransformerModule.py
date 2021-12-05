@@ -18,7 +18,7 @@ class IndTransformer(BaseEstimator, TransformerMixin):
     def transform(self, X, y=None):
         if self.method == 'scaler':
             X_t = StandardScaler().fit_transform(self.X.T).T
-            return X_t.values
+            return X_t
         if self.method == 'norm':
             X_t = Normalizer.fit_transform(self.X)
-            return X_t.values
+            return X_t
