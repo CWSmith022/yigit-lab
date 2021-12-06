@@ -89,7 +89,8 @@ class AGONS:
         
         #Setting Randomized Search parameters for pipe.
         ran_pam= {  
-            'scaler': [MinMaxScaler(), Normalizer(), StandardScaler(),FunctionTransformer(SSRow)],
+            'scaler': [MinMaxScaler(), Normalizer(), StandardScaler(),     
+            FunctionTransformer(SSRow)],
             'anova__k': list(np.arange(3, self.k_max)), 
             'pca__n_components': list(np.arange(2, 10,1)),
             'pca__svd_solver': ['full'],
