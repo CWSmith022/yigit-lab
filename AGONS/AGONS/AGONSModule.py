@@ -39,7 +39,7 @@ class AGONS:
         Parameters
         ----------
         k_max: int or (pandas DataFrame.shape[1] + 1). Defines the maximum k value for feature selection to run. For sensor design it is reccommended to use the total number of sensors being assessed to trial all ranked important sensors.
-        cv_method = 'Stratified K Fold' (default) or 'Leave One Out' or 'Custom Value'. Choice between different methods of cross-validation see https://scikit-learn.org/stable/modules/cross_validation.html for further details. 'Custom Value' does not use a specific method to cross-validate and instead only cross-validates based on the RandomizedSearchCV algorithm. Note, Stratified K Fold is fastest.
+        cv_method = 'Stratified K Fold' (default),'Repeated Stratified K Fold', 'Leave One Out' or 'Custom Value'. Choice between different methods of cross-validation see https://scikit-learn.org/stable/modules/cross_validation.html for further details. 'Custom Value' does not use a specific method to cross-validate and instead only cross-validates based on the RandomizedSearchCV algorithm. Note, Stratified K Fold is fastest.
         cv_fold = 5 (default), int. The total number of folds performed in cross-validation.
         random_state = None or int. Sets a reproducible state for data. Recommended to obtain reproducible results.
         rep_fold = 5 (default), int. Used on for repeating stratified K Fold, where each cross-validation fold is repeated n number of times
@@ -86,11 +86,16 @@ class AGONS:
             X_ = X.copy()
             X_t = StandardScaler().fit_transform(X_.T).T 
             return X_t
+        ##Row-Wise MinMax Scaler Function for Function Transformer
+        def MMRow(X):
+            X_ = X.copy()
+            X_t = MinMaxScaler().fit_transform(X_.T).T
+            return X_t
         
         #Setting Randomized Search parameters for pipe.
         ran_pam= {  
             'scaler': [MinMaxScaler(), Normalizer(), StandardScaler(),     
-            FunctionTransformer(SSRow)],
+            FunctionTransformer(SSRow),FunctionTransformer(MMRow)],
             'anova__k': list(np.arange(3, self.k_max)), 
             'pca__n_components': list(np.arange(2, 10,1)),
             'pca__svd_solver': ['full'],
@@ -121,10 +126,6 @@ class AGONS:
 
         #Pre-fit confirmation and CV-Check
         print('Modeling Initiated')
-        if self.cv_method =='Leave One Out':
-            print('Using Leave One Out Cross-Validation')
-        else:
-            print('Cross Validation done by {}!'.format(self.cv_method))
 
         #Fitting data
         print('Fitting Data')
