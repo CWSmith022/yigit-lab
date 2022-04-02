@@ -1,4 +1,5 @@
 # %%
+"""Test how custom functions work with sklearn package."""
 import numpy as np
 from sklearn.preprocessing import FunctionTransformer
 from sklearn.preprocessing import StandardScaler, MinMaxScaler
@@ -19,3 +20,4 @@ print(d.fit_transform(x))
 e = FunctionTransformer(MMRow)
 print(e.fit_transform(x))
 # %%
+"""Testing AGONS with Iris Dataset"""

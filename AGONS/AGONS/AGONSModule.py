@@ -151,7 +151,7 @@ class AGONS:
         modelscores = pd.concat([dfparameters, dfTr_meanscores, dfTr_stdscores, 
                               dfTe_meanscores, dfTe_stdscores], axis=1)
         modelscores = modelscores[modelscores['svm__gamma']>0.0]#Filters out    gamma<=0.0
-        modelscores = modelscores[modelscores['Train Accuracy']>0.7]#Filters out poor trainers
+        modelscores = modelscores[modelscores['Train Accuracy']>0.8]#Filters out poor trainers
         modelscores = modelscores[modelscores['Cross-Validation Accuracy']>0.90]#Filters out poor trainers
 
         #Re-index topscores for further use
@@ -243,7 +243,7 @@ class AGONS:
         
         #concat two dataframes for better visualization 
         featureScores = pd.concat([dfcolumns,dfscores],axis=1)
-        featureScores.columns = ['Assembly','Score']  #naming the dataframe columns
+        featureScores.columns = ['Sensor','Score']  #naming the dataframe columns
         display(featureScores.sort_values(by='Score', ascending=False))
         
         #Saving Feature Scores
@@ -281,8 +281,8 @@ class AGONS:
 
         self.spines = spines(top=False,right=False)
         self.spines
-        plt.ylim(-1, featureScores['Score'].max() + 100)
-        plt.xlabel('nanoassemblies', fontsize=12, fontweight=False, color='k')
+        plt.ylim(-1, featureScores['Score'].max() + 10)
+        plt.xlabel('nanosensors', fontsize=12, fontweight=False, color='k')
         plt.ylabel('importance score', fontsize=12, fontweight=False, color='k')
         plt.xticks(fontsize=12, fontweight=False, rotation=90)
         plt.yticks(fontsize=12, fontweight=False)
@@ -568,8 +568,8 @@ class AGONS:
             self.pca3=self.pca_diag.explained_variance_ratio_[2]
 
             round_pca1 = 3 #@param {type:"integer"}
-            round_pca2 = 2 #@param {type:"integer"}
-            round_pca3 = 2 #@param {type:"integer"}
+            round_pca2 = 3 #@param {type:"integer"}
+            round_pca3 = 3 #@param {type:"integer"}
             axes.set_xlabel("PC1 {}%".format(round((self.pca1*100), round_pca1)),#pca.       explained_variance_ratio_[0],2)*100),
                          fontsize=12,color='k', fontweight= False, labelpad=5)
             axes.set_ylabel("PC2 {}%".format(round((self.pca2*100), round_pca2)),
@@ -630,3 +630,4 @@ class AGONS:
         self.ypred_prob = self.final_model.predict_proba(xtest)
 
         return self.ypred_prob
+# %%
