@@ -38,7 +38,7 @@ class AGONS:
 
         Parameters
         ----------
-        k_max: int or (pandas DataFrame.shape[1] + 1). Defines the maximum k value for feature selection to run. For sensor design it is reccommended to use the total number of sensors being assessed to trial all ranked important sensors.
+        k_max: int or (pandas DataFrame.shape[1] + 1). Defines the maximum k value for feature selection to run. For sensor design it is reccommended to use the total number of sensors to trial all ranked important sensors.
         cv_method = 'Stratified K Fold' (default),'Repeated Stratified K Fold', 'Leave One Out' or 'Custom Value'. Choice between different methods of cross-validation see https://scikit-learn.org/stable/modules/cross_validation.html for further details. 'Custom Value' does not use a specific method to cross-validate and instead only cross-validates based on the RandomizedSearchCV algorithm. Note, Stratified K Fold is fastest.
         cv_fold = 5 (default), int. The total number of folds performed in cross-validation.
         random_state = None or int. Sets a reproducible state for data. Recommended to obtain reproducible results.
@@ -231,10 +231,10 @@ class AGONS:
         #self.xtrain = xtrain
         #self.ytrain = ytrain
 
-        print('Total Nanoassembly Frequency is: \n', 
+        print('Total Nanosensor Frequency is: \n', 
         self.score_table['anova__k'].value_counts()/self.score_table.shape[0]   *100)
 
-        #Visualizing most important assemblies
+        #Visualizing most important sensors
         #Feature Selection
         bestfeatures = SelectKBest(score_func=f_classif, k='all')
         fit = bestfeatures.fit(self.xtrain, self.ytrain)
@@ -256,7 +256,7 @@ class AGONS:
         color_palette = "Greens_r" #@param ["viridis", "rocket", "mako", "crest", "light:seagreen", "light:seagreen_r", "light:b", "light:b_r", "dark:salmon", "dark:salmon_r", "Blues", "Blues_r", "YlOrBr", "tab10"] {allow-input: true}
 
         #plotting feature selection
-        bar=sns.barplot(data=featureScores.sort_values('Score', ascending=False), x='Assembly', y='Score', palette=color_palette,
+        bar=sns.barplot(data=featureScores.sort_values('Score', ascending=False), x='Sensor', y='Score', palette=color_palette,
                 linewidth=1.5,edgecolor=".1", saturation=1)
 
         ax.tick_params(direction='out', length=4, width=2, colors='k',
@@ -304,9 +304,9 @@ class AGONS:
                 get_ipython().run_line_magic('matplotlib', 'inline')
 
         fet_select=list(self.featureScores.sort_values(by=['Score'], 
-        ascending=[False])[0:self.score_table['anova__k'][0]]['Assembly'])
+        ascending=[False])[0:self.score_table['anova__k'][0]]['Sensor'])
 
-        print('Selected Nanoassemblies are:', fet_select)
+        print('Selected Nanosensors are:', fet_select)
         self.fet_select = fet_select
         #Feature Conversion
         X_train_fet = self.xtrain[self.fet_select]
