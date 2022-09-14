@@ -160,7 +160,7 @@ class AGONS:
 
         top_score = top_score.reset_index() #Resets index for ease of selection
         top_score = top_score.drop(['index'], axis=1)
-        print('Validate Top Selected Parameters at minimal 70% Train Accuracy')
+        print('Validate Top Selected Parameters at minimal 80% Train Accuracy')
         print('Initiate Validation data step')
 
         #Extracting Parameters from top_score
