@@ -1,8 +1,8 @@
 from distutils.core import setup
 setup(
-  name = 'AGONS',         
-  packages = ['AGONS'],   
-  version = '1.1.4',    
+  name = 'MILAN',         
+  packages = ['MILAN'],   
+  version = '1.1.5',    
   license='MIT',       
   description = 'Package to use Yigit Lab Developed AGONS Algorithm for nanoparticle based sensor arrays',   
   author = 'Christopher Smith',                   
