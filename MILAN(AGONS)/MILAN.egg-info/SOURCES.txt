@@ -1,0 +1,11 @@
+README.md
+setup.cfg
+setup.py
+MILAN/AGONSModule.py
+MILAN/__init__.py
+MILAN/test.py
+MILAN.egg-info/PKG-INFO
+MILAN.egg-info/SOURCES.txt
+MILAN.egg-info/dependency_links.txt
+MILAN.egg-info/requires.txt
+MILAN.egg-info/top_level.txt
