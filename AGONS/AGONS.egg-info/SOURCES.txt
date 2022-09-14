@@ -1,0 +1,11 @@
+README.md
+setup.cfg
+setup.py
+AGONS/AGONSModule.py
+AGONS/__init__.py
+AGONS/test.py
+AGONS.egg-info/PKG-INFO
+AGONS.egg-info/SOURCES.txt
+AGONS.egg-info/dependency_links.txt
+AGONS.egg-info/requires.txt
+AGONS.egg-info/top_level.txt

@@ -3,3 +3,6 @@ matplotlib
 ipympl
 seaborn
 sklearn
+numpy
+pandas
+time

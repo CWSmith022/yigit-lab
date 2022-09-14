@@ -1,7 +1,7 @@
 Metadata-Version: 2.1
-Name: MILAN
-Version: 1.1.5
-Summary: Package to use Yigit Lab Developed AGONS Algorithm for nanoparticle based sensor arrays
+Name: AGONS
+Version: 1.1.6
+Summary: Package to use Yigit Lab developed AGONS algorithm for the machine learning powered nanosensor array (MILAN). This package has high potential to be useful towards other nanosensor arrays as well.
 Home-page: https://github.com/CWSmith022/yigit-lab
 Download-URL: https://github.com/user/reponame/archive/v_01.tar.gz
 Author: Christopher Smith

@@ -1,10 +1,10 @@
 from distutils.core import setup
 setup(
-  name = 'MILAN',         
-  packages = ['MILAN'],   
-  version = '1.1.5',    
+  name = 'AGONS',         
+  packages = ['AGONS'],   
+  version = '1.1.6',    
   license='MIT',       
-  description = 'Package to use Yigit Lab Developed AGONS Algorithm for nanoparticle based sensor arrays',   
+  description = 'Package to use Yigit Lab developed AGONS algorithm for the machine learning powered nanosensor array (MILAN). This package has high potential to be useful towards other nanosensor arrays as well.',   
   author = 'Christopher Smith',                   
   author_email = 'c.w.smith022@gmail.com',      
   url = 'https://github.com/CWSmith022/yigit-lab',   
@@ -16,6 +16,9 @@ setup(
           'ipympl',
           'seaborn',
           'sklearn',
+          'numpy',
+          'pandas',
+          'time'
       ],
   classifiers=[
     'Development Status :: 3 - Alpha',      
