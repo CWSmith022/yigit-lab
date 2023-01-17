@@ -35,7 +35,7 @@ Set the final model parameters and re-input training data testing data:
 agons.set_final_model(model_params=b, 
                       x_fit = x_train, 
                       y_fit = y_train.squeeze())
-                      ```
+```
 
 Predict on future cases on test set:
 ```
