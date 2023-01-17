@@ -2,7 +2,7 @@ from distutils.core import setup
 setup(
   name = 'AGONS',         
   packages = ['AGONS'],   
-  version = '1.1.7',    
+  version = '1.1.9.1',    
   license='MIT',       
   description = 'Package to use Yigit Lab developed AGONS algorithm for the machine learning powered nanosensor array (MILAN). This package has high potential to be useful towards other nanosensor arrays as well.',   
   author = 'Christopher Smith',                   
@@ -28,6 +28,8 @@ setup(
     'Programming Language :: Python :: 3.4',
     'Programming Language :: Python :: 3.7',
     'Programming Language :: Python :: 3.8',
-    'Programming Language :: Python :: 3.9'
+    'Programming Language :: Python :: 3.9',
+    'Programming Language :: Python :: 3.10',
+    'Programming Language :: Python :: 3.11'
   ],
 )
