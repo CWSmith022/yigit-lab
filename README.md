@@ -8,11 +8,11 @@ Primary folder is for machine learning powered nanosensor array (MILAN) based on
 
 ## Running the Code:
 Initiating AGONS for training and cross-validation:
-'''assembly
+```assembly
 from AGONS_nano.AGONSModule import AGONS
 agons = AGONS(k_max = x_train.shape[1], cv_method='Repeated Stratified K Fold', cv_fold=10, random_state = 10)
 agons.activate(x_train, y_train.squeeze(), x_val, y_val.squeeze())
-'''
+```
 
 AGONS modeling will then initiate. The following sequence can be used for generating figures and exploring the modeling:
 '''
