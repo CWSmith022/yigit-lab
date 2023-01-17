@@ -619,3 +619,5 @@ class AGONS:
 
         return self.ypred_prob
 
+
+# %%
