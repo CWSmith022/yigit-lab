@@ -3,7 +3,7 @@
 """Class for AGONS"""
 
 #Author: Christopher W. Smith
-#Date: 10/10/21
+#Date: 01/17/2023
 
 #Data processing
 import numpy as np
@@ -19,8 +19,8 @@ import seaborn as sns
 sns.set_style('ticks')
 #Modeling and Scoring
 from sklearn.pipeline import Pipeline
-from sklearn.preprocessing import FunctionTransformer
 from sklearn.preprocessing import MinMaxScaler, Normalizer, StandardScaler
+from AGONS.Custom_Transformers import RowStandardScaler, RowMinMaxScaler
 from sklearn.svm import SVC
 from sklearn.metrics import accuracy_score
 from sklearn.model_selection import StratifiedKFold, LeaveOneOut, RepeatedStratifiedKFold
@@ -81,21 +81,10 @@ class AGONS:
                 ('pca', PCA()), 
                 ('svm', SVC(probability=True))
                 ])
-        ##Row-Wise Standard Scaler Function for Function Transformer
-        def SSRow(X):
-            X_ = X.copy()
-            X_t = StandardScaler().fit_transform(X_.T).T 
-            return X_t
-        ##Row-Wise MinMax Scaler Function for Function Transformer
-        def MMRow(X):
-            X_ = X.copy()
-            X_t = MinMaxScaler().fit_transform(X_.T).T
-            return X_t
-        
+    
         #Setting Randomized Search parameters for pipe.
         ran_pam= {  
-            'scaler': [MinMaxScaler(), Normalizer(), StandardScaler(),     
-            FunctionTransformer(SSRow),FunctionTransformer(MMRow)],
+            'scaler': [MinMaxScaler(), Normalizer(), StandardScaler(), RowMinMaxScaler(), RowStandardScaler()],
             'anova__k': list(np.arange(3, self.k_max)), 
             'pca__n_components': list(np.arange(2, 10,1)),
             'pca__svd_solver': ['full'],
@@ -209,7 +198,6 @@ class AGONS:
         #Returns pandas DataFrame of all parameters
         return self
         
-        #.top_score
     
     def parameter_table(self,):
 
@@ -630,4 +618,4 @@ class AGONS:
         self.ypred_prob = self.final_model.predict_proba(xtest)
 
         return self.ypred_prob
-# %%
+

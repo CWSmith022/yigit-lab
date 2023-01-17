@@ -1,23 +1,22 @@
 # %%
 """Test how custom functions work with sklearn package."""
 import numpy as np
-from sklearn.preprocessing import FunctionTransformer
+from AGONS.Custom_Transformers import RowStandardScaler, RowMinMaxScaler
 from sklearn.preprocessing import StandardScaler, MinMaxScaler
+
+#Generate random data
 x = np.array([[1,2,3], [6,5,4], [8,7,9]])
-print(x)
-def SSRow(X):
-    X_ = X.copy()
-    X_t = StandardScaler().fit_transform(X_.T).T 
-    return X_t
 
-def MMRow(X):
-    X_ = X.copy()
-    X_t = MinMaxScaler().fit_transform(X_.T).T
-    return X_t
+#Compare RowStandardScaler to normal StandardScaler
+rws = RowStandardScaler()
+ss = StandardScaler()
 
-d = FunctionTransformer(SSRow)
-print(d.fit_transform(x))
-e = FunctionTransformer(MMRow)
-print(e.fit_transform(x))
-# %%
-"""Testing AGONS with Iris Dataset"""
+print("Showing output of RowStandardScaler: {}".format(rws.fit_transform(x)))
+print("Showing output of StandardScaler: {}".format(ss.fit_transform(x)))
+
+#Compare RowMinMaxScaler to normal MinMaxScaler
+rms = RowMinMaxScaler()
+ms = MinMaxScaler()
+
+print("Showing output of RowStandardScaler: {}".format(rms.fit_transform(x)))
+print("Showing output of StandardScaler: {}".format(ms.fit_transform(x)))
