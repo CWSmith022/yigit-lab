@@ -1,3 +1,3 @@
 # %%
-from AGONS.AGONSModule import AGONS
-from AGONS.Custom_Transformers import RowMinMaxScaler, RowStandardScaler
+from AGONS_nano.AGONSModule import AGONS
+from AGONS_nano.Custom_Transformers import RowMinMaxScaler, RowStandardScaler
