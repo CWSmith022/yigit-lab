@@ -1,7 +1,7 @@
 # %%
 """Test how custom functions work with sklearn package."""
 import numpy as np
-from AGONS.Custom_Transformers import RowStandardScaler, RowMinMaxScaler
+from AGONS_nano.Custom_Transformers import RowStandardScaler, RowMinMaxScaler
 from sklearn.preprocessing import StandardScaler, MinMaxScaler
 
 #Generate random data

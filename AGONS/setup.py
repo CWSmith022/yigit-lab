@@ -2,7 +2,7 @@ from distutils.core import setup
 setup(
   name = 'AGONS_nano',         
   packages = ['AGONS_nano'],   
-  version = '1.1.9.5',    
+  version = '1.1.9.6',    
   license='MIT',       
   description = 'Package to use Yigit Lab developed AGONS algorithm for the machine learning powered nanosensor array (MILAN). This package has high potential to be useful towards other nanosensor arrays as well.',   
   author = 'Christopher Smith',                   

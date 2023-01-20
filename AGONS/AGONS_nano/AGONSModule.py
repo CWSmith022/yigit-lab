@@ -20,7 +20,7 @@ sns.set_style('ticks')
 #Modeling and Scoring
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import MinMaxScaler, Normalizer, StandardScaler
-from AGONS.Custom_Transformers import RowStandardScaler, RowMinMaxScaler
+from AGONS_nano.Custom_Transformers import RowStandardScaler, RowMinMaxScaler
 from sklearn.svm import SVC
 from sklearn.metrics import accuracy_score
 from sklearn.model_selection import StratifiedKFold, LeaveOneOut, RepeatedStratifiedKFold
